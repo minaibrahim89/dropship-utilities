@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html style="min-width:300px;min-height:300px;">
+
+<head>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+
+        div {
+            margin-bottom: 8px;
+        }
+
+        .header {
+            background-color: cornflowerblue;
+            color: white;
+            padding: 16px;
+            margin: 0;
+        }
+
+        .content {
+            margin: 0 8px;
+        }
+
+        h4 {
+            margin-bottom: 4px;
+        }
+
+        span h4 {
+            display: inline;
+        }
+
+        .profit input {
+            width: 64px;
+        }
+
+        .refresh {
+            font-size: small;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 class="header">Dropship Utilities <a class="refresh"
+           href="">refresh</a>
+    </h2>
+
+    <div class="content">
+        <div>
+            <h4>Average price</h4>
+            <span name="currency"></span> <span id="avg">-</span>
+        </div>
+
+        <div class="profit">
+            <h4>
+                Profit per sale
+                <span><input id="profitPercent"
+                           value="25"
+                           type="number"
+                           maxlength="4" />%</span>
+            </h4>
+            <span name="currency"></span> <span id="profit">-</span>
+        </div>
+    </div>
+
+    <script type="module"
+            src="popup.js"></script>
+</body>
+
+</html>
