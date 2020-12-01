@@ -15,8 +15,9 @@
         .header {
             background-color: cornflowerblue;
             color: white;
-            padding: 16px;
-            margin: 0;
+            padding: 4px;
+            margin: 0; 
+            text-align: center;
         }
 
         .content {
@@ -37,14 +38,20 @@
 
         .refresh {
             font-size: small;
+            width: 100%;
+            text-align: end;
+            display: block;
+            color: white;
         }
     </style>
 </head>
 
 <body>
-    <h2 class="header">Dropship Utilities <a class="refresh"
-           href="">refresh</a>
-    </h2>
+    <div class="header">
+        <a class="refresh" href="">refresh</a>
+        <img src="icons/icon.png" width="120">
+        <h2> Dropship Utilities</h2>
+    </div>
 
     <div class="content">
         <div>
@@ -55,17 +62,13 @@
         <div class="profit">
             <h4>
                 Profit per sale
-                <span><input id="profitPercent"
-                           value="25"
-                           type="number"
-                           maxlength="4" />%</span>
+                <span><input id="profitPercent" value="25" type="number" maxlength="4" />%</span>
             </h4>
             <span name="currency"></span> <span id="profit">-</span>
         </div>
     </div>
 
-    <script type="module"
-            src="popup.js"></script>
+    <script type="module" src="popup.js"></script>
 </body>
 
 </html>
