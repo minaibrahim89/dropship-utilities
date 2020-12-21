@@ -16,8 +16,16 @@
             background-color: cornflowerblue;
             color: white;
             padding: 4px;
-            margin: 0; 
+            margin: 0;
             text-align: center;
+        }
+
+        .refresh {
+            font-size: small;
+            width: 100%;
+            text-align: end;
+            display: block;
+            color: white;
         }
 
         .content {
@@ -36,12 +44,8 @@
             width: 64px;
         }
 
-        .refresh {
-            font-size: small;
-            width: 100%;
-            text-align: end;
-            display: block;
-            color: white;
+        .is-dropship a {
+            margin-right: 8px;
         }
     </style>
 </head>
@@ -66,7 +70,21 @@
             </h4>
             <span name="currency"></span> <span id="profit">-</span>
         </div>
+
+        <div class="is-dropship">
+            <h4>
+                Dropship store?
+                <span id="isDropship" style="color: orange;">maybe</span>
+            </h4>
+            <span>
+                <button id="dropshipYes" href="">yes</button>
+                <button id="dropshipNo" href="">no</button>
+                <button id="dropshipMaybe" href="">maybe</button>
+            </span>
+        </div>
     </div>
+
+    <div id="debug"></div>
 
     <script type="module" src="popup.js"></script>
 </body>

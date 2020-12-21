@@ -5,8 +5,13 @@
     "manifest_version": 2,
     "permissions": [
         "activeTab",
+        "storage",
         "https://www.bing.com/shop/*",
         "https://www.google.com/*"
+    ],
+    "optional_permissions": [
+        "http://*/", 
+        "https://*/"
     ],
     "browser_action": {
         "default_icon": "icons/app-icon.png",
