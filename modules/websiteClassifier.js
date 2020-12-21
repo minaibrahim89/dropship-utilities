@@ -1,6 +1,7 @@
 document.getElementById('dropshipper').addEventListener('click', () => setStoreType('dropshipper', 'green'));
 document.getElementById('supplier').addEventListener('click', () => setStoreType('supplier', 'blue'));
 document.getElementById('other').addEventListener('click', () => setStoreType('other', 'red'));
+document.getElementById('clear').addEventListener('click', () => removeStore());
 var website = document.getElementById('website');
 var websiteType = document.getElementById('websiteType');
 
@@ -43,7 +44,7 @@ function saveStore(type) {
         if (!store) {
             stores.push({ name: hostname, type: type });
         } else {
-            store.isDropship = isDropship;
+            store.type = type;
         }
         updateStores(stores);
     });
@@ -51,9 +52,13 @@ function saveStore(type) {
 
 function removeStore() {
     getKnownStores(stores => {
-        var index = stores.indexOf(s => s.name === hostname);
-        stores = stores.splice(index, 1);
+        var index = stores.findIndex(s => s.name === hostname);
+        if (index < 0) {
+            return;
+        }
+        stores.splice(index, 1);
         updateStores(stores);
+        markAs('', 'black');
     })
 }
 
