@@ -1,6 +1,11 @@
-document.getElementById('dropshipper').addEventListener('click', () => setStoreType('dropshipper', 'green'));
-document.getElementById('supplier').addEventListener('click', () => setStoreType('supplier', 'blue'));
-document.getElementById('other').addEventListener('click', () => setStoreType('other', 'red'));
+const UNKNOWN_WEBSITE = { type: '', color: 'transparent'};
+const DROPSHIPPER_WEBSITE = { type: 'dropshipper', color: 'green'};
+const SUPPLIER_WEBSITE = { type: 'supplier', color: 'blue'};
+const OTHER_WEBSITE = { type: 'other', color: 'red'};
+
+document.getElementById('dropshipper').addEventListener('click', () => setStoreType(DROPSHIPPER_WEBSITE));
+document.getElementById('supplier').addEventListener('click', () => setStoreType(SUPPLIER_WEBSITE));
+document.getElementById('other').addEventListener('click', () => setStoreType(OTHER_WEBSITE));
 document.getElementById('clear').addEventListener('click', () => removeStore());
 var website = document.getElementById('website');
 var websiteType = document.getElementById('websiteType');
@@ -17,25 +22,20 @@ function checkCurrentStore() {
     getKnownStores(stores => {
         var store = Array.from(stores).find(s => s.name === hostname);
         if (!store) {
-            markAs('', 'black');
+            markAs(UNKNOWN_WEBSITE);
         } else if (store.type === 'dropshipper') {
-            markAs('dropshipper', 'green');
+            markAs(DROPSHIPPER_WEBSITE);
         } else if (store.type === 'supplier') {
-            markAs('supplier', 'blue');
+            markAs(SUPPLIER_WEBSITE);
         } else if (store.type === 'other') {
-            markAs('other', 'red');
+            markAs(OTHER_WEBSITE);
         }
     });
 }
 
-function setStoreType(type, color) {
-    saveStore(type);
-    markAs(type, color);
-}
-
-function markAs(type, color) {
-    websiteType.innerText = type;
-    websiteType.style.color = color;
+function setStoreType(websiteClass) {
+    saveStore(websiteClass.type);
+    markAs(websiteClass);
 }
 
 function saveStore(type) {
@@ -58,8 +58,13 @@ function removeStore() {
         }
         stores.splice(index, 1);
         updateStores(stores);
-        markAs('', 'black');
+        markAs(UNKNOWN_WEBSITE);
     })
+}
+
+function markAs(websiteClass) {
+    websiteType.innerText = websiteClass.type;
+    websiteType.style.backgroundColor = websiteClass.color;
 }
 
 function updateStores(stores) {
