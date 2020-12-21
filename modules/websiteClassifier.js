@@ -1,6 +1,6 @@
 document.getElementById('dropshipper').addEventListener('click', () => setStoreType('dropshipper', 'green'));
 document.getElementById('supplier').addEventListener('click', () => setStoreType('supplier', 'blue'));
-document.getElementById('other').addEventListener('click', removeStore);
+document.getElementById('other').addEventListener('click', () => setStoreType('other', 'red'));
 var website = document.getElementById('website');
 var websiteType = document.getElementById('websiteType');
 
@@ -17,21 +17,19 @@ function checkCurrentStore() {
         var store = Array.from(stores).find(s => s.name === hostname);
         if (!store) {
             markAs('', 'black');
-        } else  if (store.type === 'dropshipper') {
+        } else if (store.type === 'dropshipper') {
             markAs('dropshipper', 'green');
         } else if (store.type === 'supplier') {
             markAs('supplier', 'blue');
+        } else if (store.type === 'other') {
+            markAs('other', 'red');
         }
     });
 }
 
 function setStoreType(type, color) {
-    if (type === 'other') {
-        removeStore();
-    } else {
-        saveStore(type);
-        markAs(type, color);
-    }
+    saveStore(type);
+    markAs(type, color);
 }
 
 function markAs(type, color) {
@@ -60,7 +58,7 @@ function removeStore() {
 }
 
 function updateStores(stores) {
-    chrome.storage.sync.set({ 'stores': JSON.stringify(stores) }, () =>{});
+    chrome.storage.sync.set({ 'stores': JSON.stringify(stores) }, () => { });
 }
 
 function getKnownStores(callback) {
