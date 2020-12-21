@@ -1,5 +1,5 @@
 import { calculateAverage } from "./modules/prices.js";
-import { setCurrentUrl } from "./modules/dropshipChecker.js";
+import { setCurrentUrl } from "./modules/websiteClassifier.js";
 
 chrome.tabs.query({
     currentWindow: true,//Filters tabs in current window
