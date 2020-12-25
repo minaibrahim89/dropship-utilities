@@ -40,7 +40,7 @@ function checkCurrentStore() {
 }
 
 function setStoreType(websiteClass) {
-    saveStore(websiteClass.type, websiteTypeHint.value);
+    saveStore(websiteClass.type, websiteNotes.value);
     markAs(websiteClass);
 }
 
