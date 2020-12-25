@@ -57,9 +57,12 @@ function saveStore(type, notes) {
 
         if (!store) {
             stores.push({ name: hostname, type: type, notes: notes });
-        } else {
+        } else if (type || notes) {
             store.type = type;
             store.notes = notes;
+        } else {
+            removeStore();
+            return;
         }
 
         updateStores(stores);
