@@ -1,6 +1,9 @@
 
-var debugDiv = document.getElementById('debug');
+var debugSection = document.getElementById('debug');
+var debugContent = document.getElementById('debugContent');
+var counter = 0;
 
 export function debug(text) {
-    debugDiv.innerHTML += text + '<br>';
+    debugSection.style.display = 'block';
+    debugContent.innerHTML += ++counter + ': ' + text + '<br>--------------<br>';
 }

@@ -50,13 +50,17 @@
         }
 
         .websiteType textarea {
-            width: 100%;            
+            width: 100%;
         }
 
         #websiteType {
             border-radius: 4px;
             color: white;
             padding: 2px 8px;
+        }
+
+        #debug {
+            display: none;
         }
     </style>
 </head>
@@ -84,7 +88,7 @@
 
         <div class="websiteType">
             <h3 id="website"></h3>
-            <h4>Website type <span id="websiteType"></span></h4>            
+            <h4>Website type <span id="websiteType"></span></h4>
             <span>
                 <button id="dropshipper" href="">dropshipper</button>
                 <button id="supplier" href="">supplier</button>
@@ -96,9 +100,12 @@
                 <textarea id="notes" rows="4"></textarea>
             </div>
         </div>
-    </div>
 
-    <div id="debug"></div>
+        <div id="debug">
+            <h4>Debug <a href="">clear</a></h4>
+            <div id="debugContent"></div>
+        </div>
+    </div>
 
     <script type="module" src="popup.js"></script>
 </body>
