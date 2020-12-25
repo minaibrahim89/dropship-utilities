@@ -30,6 +30,7 @@
 
         .content {
             margin: 0 8px;
+            padding: 4px;
         }
 
         h4 {
@@ -47,6 +48,11 @@
         .websiteType h4 {
             margin-bottom: 8px;
         }
+
+        .websiteType textarea {
+            width: 100%;            
+        }
+
         #websiteType {
             border-radius: 4px;
             color: white;
@@ -64,29 +70,31 @@
 
     <div class="content">
         <div>
-            <h4>Average price</h4>
+            <h3>Average price</h3>
             <span name="currency"></span> <span id="avg">-</span>
         </div>
 
         <div class="profit">
-            <h4>
+            <h3>
                 Profit per sale
                 <span><input id="profitPercent" value="25" type="number" maxlength="4" />%</span>
-            </h4>
-            <span name="currency"></span> <span id="profit">-</span>
+            </h3>
+            <span name="currency"></span><span id="profit">-</span>
         </div>
 
         <div class="websiteType">
-            <h4>
-                <span id="website"></span>&nbsp;
-                <span id="websiteType"></span>
-            </h4>
+            <h3 id="website"></h3>
+            <h4>Website type <span id="websiteType"></span></h4>            
             <span>
                 <button id="dropshipper" href="">dropshipper</button>
                 <button id="supplier" href="">supplier</button>
                 <button id="other" href="">other</button>
                 <button id="clear" href="">clear</button>
             </span>
+            <div>
+                <h4>Notes</h4>
+                <textarea id="notes" rows="4"></textarea>
+            </div>
         </div>
     </div>
 

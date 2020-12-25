@@ -1,14 +1,18 @@
-const UNKNOWN_WEBSITE = { type: '', color: 'transparent'};
-const DROPSHIPPER_WEBSITE = { type: 'dropshipper', color: 'green'};
-const SUPPLIER_WEBSITE = { type: 'supplier', color: 'blue'};
-const OTHER_WEBSITE = { type: 'other', color: 'red'};
+const UNKNOWN_WEBSITE = { type: '', color: 'transparent' };
+const DROPSHIPPER_WEBSITE = { type: 'dropshipper', color: 'green' };
+const SUPPLIER_WEBSITE = { type: 'supplier', color: 'blue' };
+const OTHER_WEBSITE = { type: 'other', color: 'red' };
 
 document.getElementById('dropshipper').addEventListener('click', () => setStoreType(DROPSHIPPER_WEBSITE));
 document.getElementById('supplier').addEventListener('click', () => setStoreType(SUPPLIER_WEBSITE));
 document.getElementById('other').addEventListener('click', () => setStoreType(OTHER_WEBSITE));
 document.getElementById('clear').addEventListener('click', () => removeStore());
+
 var website = document.getElementById('website');
 var websiteType = document.getElementById('websiteType');
+var websiteNotes = document.getElementById('notes');
+
+notes.addEventListener('keyup', saveNotes);
 
 var hostname;
 
@@ -21,6 +25,8 @@ export function setCurrentUrl(host) {
 function checkCurrentStore() {
     getKnownStores(stores => {
         var store = Array.from(stores).find(s => s.name === hostname);
+        websiteNotes.value = store && store.notes ? store.notes : '';
+
         if (!store) {
             markAs(UNKNOWN_WEBSITE);
         } else if (store.type === 'dropshipper') {
@@ -34,18 +40,28 @@ function checkCurrentStore() {
 }
 
 function setStoreType(websiteClass) {
-    saveStore(websiteClass.type);
+    saveStore(websiteClass.type, websiteTypeHint.value);
     markAs(websiteClass);
 }
 
-function saveStore(type) {
+function saveNotes() {
     getKnownStores(stores => {
         var store = Array.from(stores).find(s => s.name === hostname);
+        saveStore(store ? store.type : undefined, websiteNotes.value);
+    });
+}
+
+function saveStore(type, notes) {
+    getKnownStores(stores => {
+        var store = Array.from(stores).find(s => s.name === hostname);
+
         if (!store) {
-            stores.push({ name: hostname, type: type });
+            stores.push({ name: hostname, type: type, notes: notes });
         } else {
             store.type = type;
+            store.notes = notes;
         }
+
         updateStores(stores);
     });
 }
@@ -53,9 +69,11 @@ function saveStore(type) {
 function removeStore() {
     getKnownStores(stores => {
         var index = stores.findIndex(s => s.name === hostname);
+        
         if (index < 0) {
             return;
         }
+
         stores.splice(index, 1);
         updateStores(stores);
         markAs(UNKNOWN_WEBSITE);
